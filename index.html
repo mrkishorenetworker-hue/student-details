@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Student Info — Interactive Form</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <!-- jsPDF + AutoTable -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <main class="wrap">
+    <!-- Left split: Unsplash image -->
+    <aside class="left-panel">
+      <img src="https://plus.unsplash.com/premium_photo-1663075983943-f927fe4ccd7d?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Students studying" class="hero-img" />
+      <div class="overlay">
+        <div class="brand">
+          <img src="https://plus.unsplash.com/premium_photo-1700830328095-26c5a1c053b8?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="logo" />
+          <h1>Intraneurals Infotech</h1>
+        </div>
+        <p class="lead">Student Details Portal — submit personal & college information. Animated UI, email notifications and downloadable certificate.</p>
+
+        <div class="progress">
+          <div class="progress-bar" id="progBar"></div>
+        </div>
+
+        <nav class="steps" id="stepDots">
+          <button data-step="0" class="dot active" aria-label="Personal"><i data-lucide="user"></i></button>
+          <button data-step="1" class="dot" aria-label="College"><i data-lucide="graduation-cap"></i></button>
+          <button data-step="2" class="dot" aria-label="Academics"><i data-lucide="book-open"></i></button>
+          <button data-step="3" class="dot" aria-label="Review"><i data-lucide="check-circle-2"></i></button>
+        </nav>
+
+        <p class="tip">Tip: Tab to move, Enter to proceed. All required fields marked *</p>
+      </div>
+    </aside>
+
+    <!-- Right split: form -->
+    <section class="card" aria-labelledby="formTitle">
+      <h2 id="formTitle" class="visually-hidden">Student Information Form</h2>
+
+      <form id="studentForm" class="form" autocomplete="on" novalidate>
+        <!-- STEP 1 -->
+        <div class="form-step active" data-step="0">
+          <h3>Personal Information</h3>
+          <label><span>Full Name *</span><input name="fullName" type="text" required></label>
+          <label><span>Email *</span><input name="email" type="email" required></label>
+          <label><span>Phone</span><input name="phone" type="tel"></label>
+          <div class="actions">
+            <button type="button" class="btn next">Next →</button>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="form-step" data-step="1">
+          <h3>College Details</h3>
+          <label><span>College Name *</span><input name="college" type="text" required></label>
+          <label><span>Department *</span><input name="department" type="text" required></label>
+          <label><span>Course *</span><input name="course" type="text" required></label>
+          <label><span>Roll Number *</span><input name="rollNumber" type="text" required></label>
+          <div class="actions">
+            <button type="button" class="btn ghost prev">← Back</button>
+            <button type="button" class="btn next">Next →</button>
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="form-step" data-step="2">
+          <h3>Academics & Extras</h3>
+          <label><span>Current CGPA / %</span><input name="cgpa" type="text"></label>
+          <label><span>Projects</span><textarea name="projects"></textarea></label>
+          <label><span>Achievements</span><textarea name="achievements"></textarea></label>
+          <label class="check"><input name="consent" type="checkbox" required> I consent to storing this information *</label>
+          <div class="actions">
+            <button type="button" class="btn ghost prev">← Back</button>
+            <button type="button" class="btn next">Review →</button>
+          </div>
+        </div>
+
+        <!-- STEP 4 -->
+        <div class="form-step" data-step="3">
+          <h3>Review & Submit</h3>
+          <div id="reviewBox" class="review"></div>
+          <div class="actions">
+            <button type="button" class="btn ghost prev">← Back</button>
+            <button type="submit" class="btn submit">Submit</button>
+          </div>
+        </div>
+      </form>
+
+      <div class="after">
+        <p id="resultMsg" class="msg"></p>
+        <button id="downloadPDF" class="btn accent" style="display:none">📥 Download Certificate (PDF)</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Made with kishore — Intraneurals</p>
+  </footer>
+
+  <script src="script.js" defer></script>
+  <script> lucide.createIcons(); </script>
+</body>
+</html>
